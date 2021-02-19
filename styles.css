@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    color: #333;
+    background: rgb(229,230,216);
+background: radial-gradient(circle, rgba(229,230,216,1) 18%, rgba(16,201,112,1) 100%);
+}
+
+.h1, h1 {
+    font-size: 36px;
+    text-align: center;
+}
+.panel-default {
+    border-color: #ddd;
+    border-radius: 25px;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    border-radius: 60px;
+}
+input[type=button].btn-block, input[type=reset].btn-block, input[type=submit].btn-block {
+    width: 100%;
+    border-radius: 45px;
+    background: #2fcd7f;
+    border-color: white;
+}

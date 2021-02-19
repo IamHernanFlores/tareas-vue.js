@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://hotemoji.com/images/dl/7/memo-emoji-by-twitter.png">
+    <title>Tareas | Vue.js</title>
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .app-form input {
+            border-radius: 0;
+        }
+
+        .notarealizada {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div id="notaApp" class="col-sm-8 col-sm-offset-2">
+            <h1>Tareas App | Vue.js <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Vue.js_Logo_2.svg/1200px-Vue.js_Logo_2.svg.png" alt="Vue" style="width: 50px;"></h1>
+
+            <!-- form -->
+            <div class="panel panel-default">
+                <h2 class="text-center">Añadir nueva nota !</h2>
+                <form v-on:submit="addnota" class="app-form">
+                    <input type="text" class="form-control" v-model="notas.titulo">
+                    <input type="submit" value="Add" class="btn btn-block btn-primary">
+                </form>
+            </div>
+
+            <!-- table -->
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Marcar como tarea terminada:</th>
+                        <th>Nombre de la nota:</th>
+                        <th>Eliminar nota:</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="nota in notas">
+                        <td>
+                            <input type="checkbox" v-model="nota.realizada">
+                        </td>
+                        <td>
+                            <span :class="{notarealizada: nota.realizada}">
+                                {{ nota.titulo }}
+                            </span>
+                        </td>
+                        <td>
+                            <button v-on:click="eliminarnota(nota)" class="btn btn-block btn-danger">
+                                Eliminar
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--Script-->
+    <script src="https://unpkg.com/vue"></script>
+    <script type="text/javascript">
+        var notaApp = new Vue({
+            el: '#notaApp',
+            data: {
+                notas: [{
+                        titulo: 'Nota 1',
+                        realizada: true
+                    },
+                    {
+                        titulo: 'Nota 2',
+                        realizada: false
+                    },
+                    {
+                        titulo: 'Nota 3',
+                        realizada: false
+                    },
+                    {
+                        titulo: 'Nota 4',
+                        realizada: false
+                    }
+                ]
+            },
+            methods: {
+                addnota: function (e) {
+                    e.preventDefault();
+                    this.notas.push({
+                        titulo: this.notas.titulo,
+                        realizada: false
+                    });
+                    this.notas.titulo = '';
+                },
+                eliminarnota: function (nota) {
+                    this.notas.splice(
+                        this.notas.indexOf(nota),
+                        1
+                    )
+                }
+            }
+        });
+    </script>
+
+    <script></script>
+</body>
+
+</html>
